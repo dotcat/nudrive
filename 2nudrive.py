@@ -20,22 +20,37 @@ class File(object):
     '''Read all data from file'''
 
     def __init__(self):
-        self._folder_name = FOLDER_NAME
-        self._file_name = FILE_NAME
-        self._file_content = FILE_CONTENT
+        # self._folder_name = FOLDER_NAME
+        self._folder_name = ''
+        # self._file_name = FILE_NAME
+        self._file_name = ''
+        # self._file_content = FILE_CONTENT
+        self._file_content = ''
         super(File, self).__init__()
 
     @property
     def folder_name(self):
         return self._folder_name
 
+    @folder_name.setter
+    def folder_name(self, value):
+        self._folder_name = value
+
     @property
     def file_name(self):
         return self._file_name
 
+    @file_name.setter
+    def file_name(self, value):
+        self._file_name = value
+
     @property
     def file_content(self):
         return self._file_content
+
+    @file_content.setter
+    def file_content(self, value):
+        self._file_content = value
 
 
 class Authorize(object):
@@ -43,10 +58,34 @@ class Authorize(object):
     '''Authrize http object'''
 
     def __init__(self):
-        self._client_email = CLIENT_EMAIL
-        self._private_key = PRIVATE_KEY
-        self._auth_scope = AUTH_SCOPE
+        self._client_email = ''
+        self._private_key = ''
+        self._auth_scope = ''
         super(Authorize, self).__init__()
+
+    @property
+    def client_email(self):
+        return self._client_email
+
+    @client_email.setter
+    def client_email(self, value):
+        self._client_email = value
+
+    @property
+    def private_key(self):
+        return self._private_key
+
+    @private_key.setter
+    def private_key(self, value):
+        self._private_key = value
+
+    @property
+    def auth_scope(self):
+        return self._auth_scope
+
+    @auth_scope.setter
+    def auth_scope(self, value):
+        self._auth_scope = value
 
     @property
     def service(self):
@@ -114,8 +153,12 @@ class Upload(File, Authorize):
 
 if __name__ == '__main__':
     f = Upload()
-    # TODO: implement setter methods
-    # f.set_public_folder
-    # f.set_file_name
+    f.folder_name = FOLDER_NAME
+    f.file_name = FILE_NAME
+    f.file_content = FILE_CONTENT
+    f.client_email = CLIENT_EMAIL
+    f.private_key = PRIVATE_KEY
+    f.auth_scope = AUTH_SCOPE
     f.create_public_folder()
     f.insert_file()
+
